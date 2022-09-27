@@ -8,7 +8,6 @@ public:
 		_name = "Фигура";
 	}
 
-	/// Нужен виртуальный метод, чтобы был полиморфизм
 	std::string& getName()
 	{
 		return _name;
@@ -27,6 +26,18 @@ protected:
 class Triangle : public Figure
 {
 public:
+	Triangle(double a, double b, double c, double A, double B, double C)
+	{
+		_a = a;
+		_b = b;
+		_c = c;
+		_A = A;
+		_B = B;
+		_C = C;
+		_name = "Треугольник";
+		_sideCount = 3;
+	}
+
 	double geta()
 	{
 		return _a;
@@ -55,18 +66,6 @@ public:
 	double getC()
 	{
 		return _C;
-	}
-
-	Triangle(double a, double b, double c, double A, double B, double C)
-	{
-		_a = a;
-		_b = b;
-		_c = c;
-		_A = A;
-		_B = B;
-		_C = C;
-		_name = "Треугольник";
-		_sideCount = 3;
 	}
 
 private:
@@ -104,6 +103,20 @@ public:
 class Quadrangle : public Figure
 {
 public:
+	Quadrangle(double a, double b, double c, double d, double A, double B, double C, double D)
+	{
+		_a = a;
+		_b = b;
+		_c = c;
+		_d = d;
+		_A = A;
+		_B = B;
+		_C = C;
+		_D = D;
+		_name = "Четырехугольник";
+		_sideCount = 4;
+	}
+
 	double geta()
 	{
 		return _a;
@@ -142,20 +155,6 @@ public:
 	double getD()
 	{
 		return _D;
-	}
-
-	Quadrangle(double a, double b, double c, double d, double A, double B, double C, double D)
-	{
-		_a = a;
-		_b = b;
-		_c = c;
-		_d = d;
-		_A = A;
-		_B = B;
-		_C = C;
-		_D = D;
-		_name = "Четырехугольник";
-		_sideCount = 4;
 	}
 
 private:
