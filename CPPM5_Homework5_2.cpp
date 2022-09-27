@@ -8,7 +8,6 @@ public:
 		_name = "Фигура";
 	}
 
-	/// Нужен виртуальный метод, чтобы был полиморфизм
 	std::string& getName()
 	{
 		return _name;
