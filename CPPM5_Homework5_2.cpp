@@ -18,9 +18,27 @@ public:
 		return _sideCount;
 	}
 
+	void printString()
+	{
+		std::cout << getName() << std::endl;
+		printSideInfo();
+		printAngleInfo();
+		std::cout << std::endl;
+	}
+
 protected:
 	std::string _name;
 	unsigned int _sideCount = 0;
+
+	virtual void printSideInfo()
+	{
+
+	}
+
+	virtual void printAngleInfo()
+	{
+
+	}
 };
 
 class Triangle : public Figure
@@ -66,6 +84,22 @@ public:
 	double getC()
 	{
 		return _C;
+	}
+protected:
+	void printSideInfo() override
+	{
+		std::cout << "Стороны: ";
+		std::cout << "a = " << geta() << ", ";
+		std::cout << "b = " << getb() << ", ";
+		std::cout << "c = " << getc() << std::endl;
+	}
+
+	void printAngleInfo()
+	{
+		std::cout << "Углы: ";
+		std::cout << "A = " << getA() << ", ";
+		std::cout << "B = " << getB() << ", ";
+		std::cout << "C = " << getC() << std::endl;
 	}
 
 private:
@@ -157,6 +191,25 @@ public:
 		return _D;
 	}
 
+protected:
+	virtual void printSideInfo()
+	{
+		std::cout << "Стороны: ";
+		std::cout << "a = " << geta() << ", ";
+		std::cout << "b = " << getb() << ", ";
+		std::cout << "c = " << getc() << ", ";
+		std::cout << "d = " << getd() << std::endl;
+	}
+
+	virtual void printAngleInfo()
+	{
+		std::cout << "Углы: ";
+		std::cout << "A = " << getA() << ", ";
+		std::cout << "B = " << getB() << ", ";
+		std::cout << "C = " << getC() << ", ";
+		std::cout << "D = " << getD() << std::endl;
+	}
+
 private:
 	double _a, _b, _c, _d, _A, _B, _C, _D;
 };
@@ -199,37 +252,9 @@ public:
 
 namespace FigureUtils
 {
-	void printInfo(Figure& figure)
+	void printInfo(Figure* figure)
 	{
-		std::cout << figure.getName() << std::endl;
-		if (figure.getSideCount() == 3)
-		{
-			Triangle& t = static_cast<Triangle&>(figure);
-			std::cout << "Стороны: ";
-			std::cout << "a = " << t.geta() << ", ";
-			std::cout << "b = " << t.getb() << ", ";
-			std::cout << "c = " << t.getc() << std::endl;
-			std::cout << "Углы: ";
-			std::cout << "A = " << t.getA() << ", ";
-			std::cout << "B = " << t.getB() << ", ";
-			std::cout << "C = " << t.getC() << std::endl;
-		}
-		else if (figure.getSideCount() == 4)
-		{
-			Quadrangle q = static_cast<Quadrangle&>(figure);
-			std::cout << "Стороны: ";
-			std::cout << "a = " << q.geta() << ", ";
-			std::cout << "b = " << q.getb() << ", ";
-			std::cout << "c = " << q.getc() << ", ";
-			std::cout << "d = " << q.getd() << std::endl;
-			std::cout << "Углы: ";
-			std::cout << "A = " << q.getA() << ", ";
-			std::cout << "B = " << q.getB() << ", ";
-			std::cout << "C = " << q.getC() << ", ";
-			std::cout << "D = " << q.getD() << std::endl;
-		}
-
-		std::cout << std::endl;
+		figure->printString();
 	}
 }
 
@@ -246,14 +271,14 @@ int main()
 	Parallelogram parallelogram(20, 30, 30, 40);
 	Rhombus rhombus(30, 30, 40);
 
-	FigureUtils::printInfo(triangle);
-	FigureUtils::printInfo(rightTriangle);
-	FigureUtils::printInfo(isoScelesTriangle);
-	FigureUtils::printInfo(equilateralTriangle);
-	FigureUtils::printInfo(quadrangle);
-	FigureUtils::printInfo(rectangle);
-	FigureUtils::printInfo(square);
-	FigureUtils::printInfo(parallelogram);
-	FigureUtils::printInfo(rhombus);
+	FigureUtils::printInfo(&triangle);
+	FigureUtils::printInfo(&rightTriangle);
+	FigureUtils::printInfo(&isoScelesTriangle);
+	FigureUtils::printInfo(&equilateralTriangle);
+	FigureUtils::printInfo(&quadrangle);
+	FigureUtils::printInfo(&rectangle);
+	FigureUtils::printInfo(&square);
+	FigureUtils::printInfo(&parallelogram);
+	FigureUtils::printInfo(&rhombus);
 
 }
